@@ -6,17 +6,20 @@ const router = express.Router();
 const routes = new Map();
 
 for(const model of models) {
-    routes.set('get' + model + 's', model);
+    routes.set('/get' + model.name + 's', model);
 }
 
 routes.forEach((model, route) => {
-    router.get(`/${route}`, async (res) => {
+    console.log(model);
+    router.get(`${route}`, async (req, res) => {
         const data = await model.findAll();
-        console.log(data);
         res.send(data);
     })
 })
 
+router.get('/', (req, res) => {
+    res.send('<h1>Router root</h1>');
+});
 
 module.exports = {
     router

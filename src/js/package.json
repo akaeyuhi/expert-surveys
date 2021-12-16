@@ -4,7 +4,8 @@
   "description": "Lab 6 Database Basics",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +15,8 @@
     "mysql2": "^2.3.3",
     "sequelize": "^6.12.0-beta.3",
     "tedious": "^14.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
