@@ -8,7 +8,7 @@ const getHandler = async (model) => {
 const getRoutes = new Map();
 
 for(const model of models) {
-    getRoutes.set('/get' + model.name + 's', model);
+    getRoutes.set('/' + model.name + 's', model);
 }
 
 module.exports = {

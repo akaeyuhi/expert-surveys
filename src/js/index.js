@@ -1,6 +1,7 @@
 "use strict";
 const express = require('express');
 const { router } = require('./router');
+const sequelize = require('./connection');
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.get('/', (req, res) => {
 })
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => {
+app.listen(port, async () => {
+    await sequelize.sync()
     console.log(`Server started on port ${port}`);
 });
