@@ -12,7 +12,7 @@ Answer.init(
         date: {
             type: DataTypes.DATE
         },
-        Experts_id: {
+        Expert_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
