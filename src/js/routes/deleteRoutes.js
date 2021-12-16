@@ -1,25 +1,34 @@
 "use strict";
 
-const { models } = require('../models');
+const {models} = require('../models');
 
 const deleteRoutes = new Map();
 
-for(const model of models) {
-    if(model.name === 'Survey') {
+const restricted = [
+    'Expert',
+    'Survey',
+    'Question',
+    'SurveyState',
+    'SelectedAlt',
+    'Alt',
+];
+
+for (const model of models) {
+    if (model.name === 'User') {
         deleteRoutes.set('/delete' + model.name, async (req) => {
-            await models.Survey.create({
-                at: Date.now(),
-                Survey_id: req.params.id,
-                SurveyState_id: 4
-            });
+            await models.Expert.destroy({
+                    where: {
+                        User_id: req.params.id
+                    }
+                }
+            );
             await model.destroy({
                 where: {
                     id: req.params.id
                 }
             });
         });
-    }
-    else {
+    } else if(!restricted.includes(model.name) ) {
         deleteRoutes.set(`/delete${model.name}`, async (req) => {
             await model.destroy({
                 where: {
