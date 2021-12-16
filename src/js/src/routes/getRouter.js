@@ -11,7 +11,7 @@ getRoutes.forEach((model, route) => {
 
         res.send(await getHandler(model).catch(e => {
             res.send({
-                error: e,
+                error: e.message,
                 code: 400
             })
         }));
@@ -19,7 +19,7 @@ getRoutes.forEach((model, route) => {
     getRouter.get(`${route}/:id`, async (req, res) => {
         res.send((await getHandler(model).catch(e => {
             res.send({
-                error: e,
+                error: e.message,
                 code: 400
             })
         }))[req.params.id - 1]);
@@ -47,7 +47,7 @@ getRouter.get('/getSurveyResult', async (req, res) => {
         res.send(result);
     } catch (e) {
         res.send({
-            error: e,
+            error: e.message,
             code: 400
         })
     }
@@ -89,7 +89,7 @@ getRouter.get('/getSurveyStats', async (req, res) => {
         res.send(result);
     } catch (e) {
         res.send({
-            error: e,
+            error: e.message,
             code: 400
         })
     }
@@ -114,7 +114,7 @@ getRouter.get('/getInvitation', async (req, res) => {
         res.send(invitation);
     } catch (e) {
         res.send({
-            error: e,
+            error: e.message,
             code: 400
         })
     }
