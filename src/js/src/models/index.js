@@ -4,7 +4,7 @@ const { Answer } = require('./Answer');
 const { Question } = require('./Question');
 const { Alt }  = require('./Alt');
 const { SelectedAlt}  = require('./SelectedAlt');
-const { Survey } = require('./survey');
+const { Survey } = require('./Survey');
 const { SurveyAction } = require('./SurveyAction');
 const { SurveyState } = require('./SurveyState');
 
