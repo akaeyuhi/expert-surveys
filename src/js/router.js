@@ -1,21 +1,18 @@
 "use strict";
 
 const express = require('express');
-const { models } = require('./models');
 const router = express.Router();
-const routes = new Map();
+const { getRoutes, getHandler } = require('./routes/getRoutes')
 
-for(const model of models) {
-    routes.set('/get' + model.name + 's', model);
-}
-
-routes.forEach((model, route) => {
-    console.log(model);
+getRoutes.forEach((model, route) => {
     router.get(`${route}`, async (req, res) => {
-        const data = await model.findAll();
-        res.send(data);
-    })
-})
+        res.send(await getHandler(model));
+    });
+    router.get(`${route}/:id`, async (req, res) => {
+        res.send((await getHandler(model))[req.params.id - 1]);
+    });
+});
+
 
 router.get('/', (req, res) => {
     res.send('<h1>Router root</h1>');
