@@ -113,7 +113,7 @@ postRouter.post('*', (req, res) => {
         error: 'Not found',
         code: 404
     })
-})
+});
 
 module.exports = {
     postRouter

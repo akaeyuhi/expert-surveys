@@ -53,7 +53,7 @@ putRouter.put('*', (req, res) => {
         error: 'Not found',
         code: 404
     })
-})
+});
 
 module.exports = {
     putRouter
