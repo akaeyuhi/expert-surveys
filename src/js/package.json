@@ -1,0 +1,18 @@
+{
+  "name": "db_lab6",
+  "version": "1.0.0",
+  "description": "Lab 6 Database Basics",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.12.0-beta.3",
+    "tedious": "^14.0.0"
+  }
+}
