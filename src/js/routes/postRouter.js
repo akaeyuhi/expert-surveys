@@ -4,6 +4,14 @@ const express = require('express');
 const postRouter = express.Router();
 const {models} = require('../models');
 
+const getActionId = (string) => {
+    switch (string) {
+        case 'Done': return 1
+        case 'Progress': return 2
+        case 'Checking': return 3
+    }
+}
+
 postRouter.post(`/newAnswer`, async (req, res) => {
     await models.Answer.create({
         text: req.body.text,
@@ -42,6 +50,15 @@ postRouter.post(`/newSurvey`, async (req, res) => {
         at: Date.now(),
         Survey_id: (await models.Survey.findAll()).length - 1,
         SurveyState_id: 3,
+    });
+    res.send('{response: 1}');
+});
+
+postRouter.post('/newAction', async (req, res) => {
+    await models.SurveyAction.create({
+        at: Date.now(),
+        Survey_id: req.body.surveyId,
+        SurveyState_id: getActionId(req.body.progress),
     });
     res.send('{response: 1}');
 });
