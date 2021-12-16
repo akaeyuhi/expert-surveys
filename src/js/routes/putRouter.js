@@ -4,7 +4,7 @@ const express = require('express');
 const putRouter = express.Router();
 const { models } = require('../models');
 
-putRouter.put('/survey', async (req, res) => {
+putRouter.put('/updateSurvey', async (req, res) => {
     if(!req.body.updateData) {
         res.send(JSON.stringify({
             error: "updateData is empty. Bad Request",
