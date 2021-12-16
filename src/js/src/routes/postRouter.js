@@ -108,6 +108,13 @@ postRouter.post('/newAction', async (req, res) => {
 
 });
 
+postRouter.post('*', (req, res) => {
+    res.send({
+        error: 'Not found',
+        code: 404
+    })
+})
+
 module.exports = {
     postRouter
 };

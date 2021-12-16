@@ -48,6 +48,13 @@ putRouter.put('/updateStatus', async (req, res) => {
     }
 });
 
+putRouter.put('*', (req, res) => {
+    res.send({
+        error: 'Not found',
+        code: 404
+    })
+})
+
 module.exports = {
     putRouter
 };
