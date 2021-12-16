@@ -70,6 +70,23 @@ getRouter.get('/getSurveyStats', async (req, res) => {
     res.send(result);
 });
 
+getRouter.get('/getInvitation', async (req, res) => {
+    const expert = await models.Expert.findByPk(req.body.expertId);
+    const userByExpert = await models.User.findByPk(expert.User_id);
+    const survey = await models.Survey.findByPk(req.body.surveyId);
+    const invitation = {
+        expert_id: expert.User_id,
+        username: userByExpert.username,
+        email: userByExpert.mail,
+        text:
+            `Запрошуємо пройти опитування ${survey.text}!
+            Тема: ${survey.topic},
+            Дедлайн: ${survey.date}, 
+            <a href="${process.env.BASE_URL || 'http://localhost:3000'}/passSurvey/${req.body.surveyId}">Перейти за посиланням </a>`
+    }
+    res.send(invitation);
+})
+
 module.exports = {
     getRouter
 }
