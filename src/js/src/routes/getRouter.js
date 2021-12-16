@@ -120,6 +120,13 @@ getRouter.get('/getInvitation', async (req, res) => {
     }
 })
 
+getRouter.get('*', (req, res) => {
+    res.send({
+        error: 'Not found',
+        code: 404
+    })
+})
+
 module.exports = {
     getRouter
 }
