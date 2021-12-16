@@ -6,7 +6,7 @@ const deleteRouter = express.Router();
 
 
 deleteRoutes.forEach((cb, route) => {
-    deleteRouter.delete(route, async (req, res) => {
+    deleteRouter.delete(route + '/:id', async (req, res) => {
         await cb(req);
         res.send('{response: 1}');
     })
