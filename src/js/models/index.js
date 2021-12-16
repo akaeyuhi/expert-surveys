@@ -9,13 +9,22 @@ const { SurveyAction } = require('./SurveyAction');
 const { SurveyState } = require('./SurveyState');
 
 module.exports = {
-    User,
-    Expert,
-    Answer,
-    Question,
-    Alt,
-    SelectedAlt,
-    Survey,
-    SurveyAction,
-    SurveyState,
+    models: {
+        User,
+        Expert,
+        Answer,
+        Question,
+        Alt,
+        SelectedAlt,
+        Survey,
+        SurveyAction,
+        SurveyState,
+        [Symbol.iterator]: function* () {
+            const keys = Object.keys(this);
+            for(const key of keys) {
+                yield this[key];
+            }
+        }
+    }
+
 };

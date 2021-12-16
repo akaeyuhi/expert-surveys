@@ -1,6 +1,4 @@
 "use strict";
-// const models = require('./models');
-// const sequelize = require('./connection');
 const express = require('express');
 const { router } = require('./router');
 

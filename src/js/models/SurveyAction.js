@@ -16,7 +16,7 @@ SurveyAction.init(
                 key: 'id'
             }
         },
-        Surveystate_id: {
+        SurveyState_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
