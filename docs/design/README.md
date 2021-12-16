@@ -341,4 +341,4 @@ SurveyAction -u-> User: collaborator
 
 
 ## Реляційна схема
-![3](https://github.com/readme-experts/expert-surveys/blob/lab5/src/img/eer.png)
+![3](https://raw.githubusercontent.com/akaeyuhi/expert-surveys/master/src/img/eer.png)
