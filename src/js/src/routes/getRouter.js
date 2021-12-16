@@ -16,7 +16,6 @@ getRoutes.forEach((model, route) => {
 });
 
 getRouter.get('/getSurveyResult', async (req, res) => {
-    console.log(req.body.expertId);
     const answers = await models.Answer.findAll({
         raw: true,
         attributes: ['Expert_id', 'Question_id', 'SelectedAlt_id'],
@@ -33,7 +32,41 @@ getRouter.get('/getSurveyResult', async (req, res) => {
         survey,
         answers: finalAnswers
     }
-    console.log(result);
+    res.send(result);
+});
+
+getRouter.get('/getSurveyStats', async (req, res) => {
+    const survey = await models.Survey.findByPk(req.body.surveyId);
+    const questions = await models.Survey.findAll({
+        raw: true,
+        where: {
+            id: survey.id
+        }
+    });
+    const answers = (await Promise.all(questions.flatMap(async q => {
+        return await models.Answer.findAll({
+            raw: true,
+            where: {
+                Question_id: q.id
+            }
+        })
+    })))[0];
+    const experts = new Set(answers.map(a => a.Expert_id));
+    const result = {
+        "SurveyStats": survey,
+        "answer_count": answers.length,
+        "questions_count": questions.length,
+        "experts_answered": experts.size,
+        "extended_data": {
+            answers,
+            questions,
+            experts: await models.Expert.findAll({
+                where: {
+                    id: [...experts]
+                }
+            })
+        },
+    };
     res.send(result);
 });
 
