@@ -2,13 +2,12 @@
 
 const express = require('express');
 const router = express.Router();
-const { getRouter } = require('./routes/getRouter');
-const { postRouter } = require('./routes/postRouter');
-const { putRouter } = require('./routes/putRouter');
+const routers = require('./routes');
 
-router.use('/get', getRouter);
-router.use('/post', postRouter);
-router.use('/put', putRouter);
+router.use('/get', routers.getRouter);
+router.use('/post', routers.postRouter);
+router.use('/put', routers.putRouter);
+router.use('/delete', routers.deleteRouter);
 
 router.get('/', (req, res) => {
     res.send('<h1>Api root</h1>');

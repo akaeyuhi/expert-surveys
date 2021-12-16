@@ -13,7 +13,6 @@ deleteRoutes.forEach((cb, route) => {
 })
 
 
-
 module.exports = {
     deleteRouter
 };
